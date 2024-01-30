@@ -1,0 +1,39 @@
+Page d’accueil personnalisée (et personnalisable ?) en fonction du profil de la personne connectée
+- Liste / calendrier des prochains repas
+- Liste des recettes préférées
+- Suivi de la consommation de calories de la journée, de la semaine
+
+Gestion des utilisateurs
+- Enregistrement
+- Mot de passe oublié
+- Changement de mon mot de passe
+- Associé un utilisateur à un nutritionniste
+- Rechercher un nutritionniste
+
+Gestion des recettes
+- Liste / Recherche / Ajout / Modification / (Suppression ?)
+
+Gestion des produits
+- Liste / Recherche / Ajout / Modification / (Suppression ?)
+
+Suivi de sa consommation calorique
+- Fixation d’objectif quotidiens / hebdomadaire
+- Suivi quotidien / hebdomadaire de sa consommation
+
+Gestion du calendrier des repas
+- Recherche / Ajout / Modification / Suppression d'un repas 
+
+
+Gestion des restrictions users
+- Liste / Recherche - Aliments / Recette / Produits
+
+Gestion des restrictions nutritioniste
+- Proposer Ajout / Modification / Suppression - Produit
+- Ajout / Modification et Suppression de ses recettes
++ Doits users
+
+Gestion des restrictions admin
+- Liste / Recherche / Ajout / Modification / Suppression - Produit / Recette / Utilisateur / Repas
+- Valider propositions modifications nutritioniste
+
+

@@ -1,0 +1,24 @@
+A faire 
+	Gestion des recettes
+	- Liste / Recherche / Ajout / Modification / Suppression
+
+
+	Gestion des produits
+	- Liste / Recherche / Ajout / Modification / Suppression
+
+	Gestion des utilisateurs
+	- Création compte
+	- Connexion / Déconnexion
+
+
+Jérôme
+	ORM pour les modèles
+	Gestion des url
+
+Ahmed
+	Page d'accueil vide
+	Vue : Gestion des recettes
+
+Oreste
+	Création base de données
+	Vue : Gestion des produits
