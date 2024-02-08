@@ -2,11 +2,11 @@
 
 class RecipyView {
 
-    function listall($products){
-        return $this->loadViewContent('Recipy','listall',$products);
+    function listall($Recepies){
+        return $this->loadViewContent('Recipy','listall',$Recepies);
     }
-    function listone($product){
-        return $this->loadViewContent('Recipy','listone',$product);
+    function listone($Recipy){
+        return $this->loadViewContent('Recipy','listone',$Recipy);
     }
     function showAccount($product){
         return $this->loadViewContent('Account','account');

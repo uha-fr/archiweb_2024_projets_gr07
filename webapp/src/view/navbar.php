@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="index.php?controller=Home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Les recettes</a>
+          <a class="nav-link active" href="index.php?controller=Recipy">Les recettes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
+          <a class="nav-link active" aria-current="page" href="index.php?controller=Account">Mon compte</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

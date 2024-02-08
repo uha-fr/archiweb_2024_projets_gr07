@@ -118,8 +118,10 @@ require VIEWDIR.DS.'navbar.php';
 <?php
 if(!is_null( $ressource) && !is_null( $file))
 require VIEWDIR.DS.$ressource.DS.$file.'.php';
-$content = NEW ShowContent();
-$content->showContent($content);
+if(!is_null( $content) ){
+$content = NEW ShowContent($content);
+echo $content;
+}
 ?>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

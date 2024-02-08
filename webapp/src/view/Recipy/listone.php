@@ -1,9 +1,13 @@
 <?php
-
-class ShowContent{
-function showContent($product){
-echo "<div>The value of the variable is: $product</div>";
+class ShowContent {
+    private $product;
+    
+    function __construct($product) {
+        $this->product = $product;
+    }
+    
+    function __toString() {
+        return "<div>le nom de recette est: {$this->product}</div>";
+    }
 }
-}
-
 ?>

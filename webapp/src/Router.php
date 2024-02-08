@@ -4,33 +4,15 @@
 class Router {
     
    function manageRequest(){
-    require CONTROLLERDIR.DS.'RecipyController.php';
 
-  //  $_GET['controller'];
+    $controller = isset($_GET['controller']) ?$_GET['controller']:'Home';
+    $classname =  $controller.'Controller';
+    require CONTROLLERDIR.DS.$controller.'Controller.php';
 
-    $c = New RecipyController();
-    $c->list();
-   // $c->view(1);
+    $c = new $classname();
+    $c->view(1);
 
-
-
-/*
-    $controller = ........
-    $filename =  $controller.'Controller.php';
-    $classname =  $controller.'Controller.php';
-    $methodname =  $controller.'Controller.php';
-    $id =  $controller.'Controller.php';
-
-
-    require CONTROLLERSDIR.DS.$Controller'Controller.php';
-
-$c = new $classname();
-if($id)
-   $c = new $classname();
-*/
-
-
-    }
+  }
 
 
 

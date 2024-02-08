@@ -13,18 +13,7 @@ final class RecipyController {
           echo $html;
           http_response_code(200);
     }
-    function getone($id){
-     require MODELDIR.DS.'RecipyModel.php' ;
-     $m=New RecipyModel();
-     $products =$m->getone();
-
-     require VIEWDIR.DS.'RecipyView.php' ;     
-     $v = New RecipyView();
-     $html = $v->listone($product);
-     echo $html;
-     http_response_code(200);
-}
-    function view($id){
+    function getone(){
      require MODELDIR.DS.'RecipyModel.php' ;
      $m=New RecipyModel();
      $product =$m->getone();
@@ -35,6 +24,11 @@ final class RecipyController {
      echo $html;
      http_response_code(200);
 }
+    function view($id){
+     if($id == 0 )
+        $this->getone();
+     else 
+        $this->list();
 }
-
+}
 ?>
