@@ -6,9 +6,9 @@ require_once 'autoload.php';
 define('DS',DIRECTORY_SEPARATOR); 
 define('ROOT', dirname(__FILE__));
 define('CLASSDIR', ROOT.DS.'src');
-define('CONTROLLERDIR', CLASSDIR.DS.'controllers');
-define('MODELDIR', CLASSDIR.DS.'models');
-define('VIEWRDIR', CLASSDIR.DS.'views');
+define('CONTROLLERDIR', CLASSDIR.DS.'controller');
+define('MODELDIR', CLASSDIR.DS.'model');
+define('VIEWDIR', CLASSDIR.DS.'view');
 
 require CLASSDIR.DS.'Router.php';
 
@@ -17,6 +17,5 @@ require CLASSDIR.DS.'Router.php';
 // $m = new Model();
 // $m->test_DB();
 
-
-// $r = new Router();
-// $r->manageRequest();
+$r = new Router();
+$r->manageRequest();
