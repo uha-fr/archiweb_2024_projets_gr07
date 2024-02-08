@@ -12,7 +12,10 @@ define('VIEWRDIR', CLASSDIR.DS.'views');
 
 require CLASSDIR.DS.'Router.php';
 
-
+// Test of a connection to the database
+// use webapp\model\Model;
+// $m = new Model();
+// $m->test_DB();
 
 
 // $r = new Router();
