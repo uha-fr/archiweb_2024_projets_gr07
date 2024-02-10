@@ -13,7 +13,20 @@ abstract class Model {
 
     private $isSelected;
 
+    protected $id;
+
+    private static $PROPERTIES_LIST = array(
+        'SELECT',
+        'WHERE',
+        'OR_WHERE',
+        'requestParams',
+        'isSelected',
+        'id'
+    );
+
     public function __construct() {
+        $this->id = -1;
+
         $this->SELECT = "";
         $this->WHERE = array();
         $this->OR_WHERE = array();
@@ -22,10 +35,69 @@ abstract class Model {
         $this->isSelected = false;
     }
 
+    public function save() {
+        // get all properties of the class (subclass of "Model")
+        $properties = get_object_vars($this);
+
+        // store the property names of the class in columns and their value
+        $columns = array();
+        $values = array();
+        foreach ($properties as $key => $value) {
+            // ignore properties specific to the parent abstract class "Model"
+            if (!in_array($key, self::$PROPERTIES_LIST)) {
+                array_push($columns, $key);
+                array_push($values, $value);
+            }
+        }
+
+        $set = array();
+        foreach ($columns as $column) {
+            array_push($set, $column.' = ?');
+        }
+        // elements of the array are put into one string, separate with ', '
+        $setClause = implode(', ', $set);
+
+        $sql = '';
+        // if new object, insert a row into the table with the properties of this object
+        if ($this->id === -1) { 
+            $sql = 'INSERT INTO '.static::getTableName().' SET '.$setClause;
+        } 
+        // if the object already exist in the database, 
+        //   update the corresponding row
+        else {  
+            $sql = 'UPDATE '.static::getTableName().' SET '.$setClause.' WHERE id = ?';
+            array_push($values, $this->id);
+        }
+
+        $con = Database::getInstance()->getConnection();
+        $statement = $con->prepare($sql);
+
+        $paramTypes = $this->getBindParamTypes($values);
+        $statement->bind_param($paramTypes, ...array_values($values));
+
+        $statement->execute();
+        $this->id = $statement->insert_id;
+        $statement->close();
+    }
+
+    public function delete() {
+        if ($this->id === -1)
+            return 0;
+
+        $con = Database::getInstance()->getConnection();    
+        $sql = 'DELETE FROM '.static::getTableName().' WHERE id=?';
+
+        $statement = $con->prepare($sql);
+        $statement->bind_param('i', $this->id);
+
+        $statement->execute();
+        $statement->close();
+    }
+
     public static function getAll() {
         $con = Database::getInstance()->getConnection();    
 
-        $statement = $con->prepare("SELECT * FROM ".static::getTableName());
+        $statement = $con->prepare('SELECT * FROM '.static::getTableName());
         $statement->execute();
         $res = $statement->get_result();
         $statement->close();
@@ -36,7 +108,7 @@ abstract class Model {
     public static function getById($id) {
         $con = Database::getInstance()->getConnection();
 
-        $statement = $con->prepare("SELECT * from ".static::getTableName()." WHERE id=?");
+        $statement = $con->prepare('SELECT * from '.static::getTableName().' WHERE id=?');
         $statement->bind_param("i", $id);
         $statement->execute();
         $res = $statement->get_result();
@@ -52,18 +124,18 @@ abstract class Model {
         return $instance;
     }
 
-    public function where($attribut, $operator, $param) {
+    public function where($attribute, $operator, $param) {
         array_push($this->WHERE, array(
-            "attribut" => $attribut,
+            "attribute" => $attribute,
             "operator" => $operator
         ));
         array_push($this->requestParams, $param);
         return $this;
     }
 
-    public function orWhere($attribut, $operator, $param) {
+    public function orWhere($attribute, $operator, $param) {
         array_push($this->OR_WHERE, array(
-            "attribut" => $attribut,
+            "attribute" => $attribute,
             "operator" => $operator
         ));
         array_push($this->requestParams, $param);
@@ -79,8 +151,8 @@ abstract class Model {
 
         // add WHERE close to the request if needed
         if (!empty($this->WHERE) || !empty($this->OR_WHERE)) {
-            $coditions = $this->concatenateWhere($this->WHERE, 'AND');
-            $coditions .= $this->concatenateWhere($this->OR_WHERE, 'OR');
+            $coditions = $this->concatenateWhereClauses($this->WHERE, 'AND');
+            $coditions .= $this->concatenateWhereClauses($this->OR_WHERE, 'OR');
 
             // replace the first 3 characteres by WHERE
             $sql .= substr_replace($coditions, ' WHERE ', 0, 3);
@@ -91,11 +163,8 @@ abstract class Model {
 
         // bind request parameters if needed
         if (!empty($this->requestParams)) {
-            $bindType = '';
-            foreach ($this->requestParams as $param) {
-                $bindType .= $this->getBindParamType($param);
-            }
-            $statement->bind_param($bindType, ...array_values($this->requestParams));    
+            $paramTypes = $this->getBindParamTypes($this->requestParams);
+            $statement->bind_param($paramTypes, ...array_values($this->requestParams));    
         }        
 
         $statement->execute();
@@ -104,29 +173,49 @@ abstract class Model {
         return $res->fetch_assoc();
     }
 
-    private function concatenateWhere ($whereArray, $boolOperator) {
+    public function setPropertiesFromData($data) {
+        if ($data === null)
+            return;
+
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
+
+    private function concatenateWhereClauses($whereClauses, $boolOperator) {
         $stmtConditions = '';
-        if (!empty($whereArray)) {
-            foreach ($whereArray as $condition) {
-                $stmtConditions .= $boolOperator.' '.$condition['attribut'].$condition['operator'].'? ';
+        if (!empty($whereClauses)) {
+            foreach ($whereClauses as $condition) {
+                $stmtConditions .= $boolOperator.' '.$condition['attribute'].$condition['operator'].'? ';
             } 
         }
         return $stmtConditions;
     }
 
-    private function getBindParamType($param) {
-        switch (gettype($param)) {
-            case 'integer':
-                return 'i';
-            case 'boolean':
-                return 'i';
-            case 'double':
-                return 'd';
-            case 'string':
-                return 's';
-            default:
-                return 's';
+    private function getBindParamTypes($params) {
+        $sqlTypeFromPhpType = function ($param) {
+            switch (gettype($param)) {
+                case 'integer':
+                    return 'i';
+                case 'boolean':
+                    return 'i';
+                case 'double':
+                    return 'd';
+                case 'string':
+                    return 's';
+                default:
+                    return 's';
+            }
+        };
+
+        $bindType = '';
+        foreach ($params as $param) {
+            $bindType .= $sqlTypeFromPhpType($param);
         }
+        return $bindType;
+
     }
 
     abstract protected static function getTableName();
