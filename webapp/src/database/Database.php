@@ -9,13 +9,16 @@ class Database {
 
     private static $instance;
 
+    private static $DEFAULT_CONFIG_PATH = __DIR__.DS.'..'.DS.'..'.DS
+                                        .'db'.DS.'database.conf';
+
     private $connection;
 
     private $configFile;
 
     private function __construct() {
         // default path of the database configuration file
-        $this->configFile = realpath($_SERVER['DOCUMENT_ROOT'] . '/archiweb_2024_projets_gr07/webapp/db/database.conf');
+        $this->configFile = self::$DEFAULT_CONFIG_PATH;
     }
 
 

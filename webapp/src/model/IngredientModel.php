@@ -21,7 +21,6 @@ class IngredientModel extends Model {
     protected static function getTableName() {
         return "ingredient";
     }
-
  
     function getingredient(){
         return ["Ingredient1","Ingredient2"];

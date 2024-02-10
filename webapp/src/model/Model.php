@@ -6,9 +6,9 @@ use webapp\database\Database;
 
 abstract class Model {
 
-    private $SELECT;
-    private $WHERE;
-    private $OR_WHERE;
+    private $selectClause;
+    private $whereClauses;
+    private $OrWhereClauses;
     private $requestParams;
 
     private $isSelected;
@@ -16,9 +16,9 @@ abstract class Model {
     protected $id;
 
     private static $PROPERTIES_LIST = array(
-        'SELECT',
-        'WHERE',
-        'OR_WHERE',
+        'selectClause',
+        'whereClauses',
+        'OrWhereClauses',
         'requestParams',
         'isSelected',
         'id'
@@ -27,9 +27,9 @@ abstract class Model {
     public function __construct() {
         $this->id = -1;
 
-        $this->SELECT = "";
-        $this->WHERE = array();
-        $this->OR_WHERE = array();
+        $this->selectClause = "";
+        $this->whereClauses = array();
+        $this->OrWhereClauses = array();
         $this->requestParams = array();
 
         $this->isSelected = false;
@@ -119,13 +119,13 @@ abstract class Model {
 
     public static function select($select) {
         $instance = new static();
-        $instance->SELECT = $select;
+        $instance->selectClause = $select;
         $instance->isSelected = true;
         return $instance;
     }
 
     public function where($attribute, $operator, $param) {
-        array_push($this->WHERE, array(
+        array_push($this->whereClauses, array(
             "attribute" => $attribute,
             "operator" => $operator
         ));
@@ -134,7 +134,7 @@ abstract class Model {
     }
 
     public function orWhere($attribute, $operator, $param) {
-        array_push($this->OR_WHERE, array(
+        array_push($this->OrWhereClauses, array(
             "attribute" => $attribute,
             "operator" => $operator
         ));
@@ -147,12 +147,12 @@ abstract class Model {
             return array();
         $this->isSelected = false;
 
-        $sql = 'SELECT '.$this->SELECT.' from '.static::getTableName();
+        $sql = 'SELECT '.$this->selectClause.' from '.static::getTableName();
 
-        // add WHERE close to the request if needed
-        if (!empty($this->WHERE) || !empty($this->OR_WHERE)) {
-            $coditions = $this->concatenateWhereClauses($this->WHERE, 'AND');
-            $coditions .= $this->concatenateWhereClauses($this->OR_WHERE, 'OR');
+        // add WHERE clauses to the request if needed
+        if (!empty($this->whereClauses) || !empty($this->OrWhereClauses)) {
+            $coditions = $this->concatenateWhereClauses($this->whereClauses, 'AND');
+            $coditions .= $this->concatenateWhereClauses($this->OrWhereClauses, 'OR');
 
             // replace the first 3 characteres by WHERE
             $sql .= substr_replace($coditions, ' WHERE ', 0, 3);
