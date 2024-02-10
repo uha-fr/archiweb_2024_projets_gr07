@@ -59,6 +59,9 @@ class Database {
         $password = $config['password'];
         $database = $config['database'];
 
+        // enable error handling for mysqli
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
         $this->connection = new mysqli($servername, $username, $password, $database);
     }
 

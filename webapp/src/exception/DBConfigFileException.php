@@ -4,7 +4,7 @@ namespace webapp\exception;
 
 class DBConfigFileException extends \Exception {
 
-    public function __construct($message = "aaaaaa", $code = 1, Throwable $previous = null) {
+    public function __construct($message = "File with uncorrect content : ", $code = 1, Throwable $previous = null) {
         parent::__construct($message, $code, $previous);
     }
 
