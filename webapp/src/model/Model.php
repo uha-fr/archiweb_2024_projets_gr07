@@ -8,7 +8,7 @@ abstract class Model {
 
     private $selectClause;
     private $whereClauses;
-    private $OrWhereClauses;
+    private $orWhereClauses;
     private $requestParams;
 
     private $isSelected;
@@ -18,7 +18,7 @@ abstract class Model {
     private static $PROPERTIES_LIST = array(
         'selectClause',
         'whereClauses',
-        'OrWhereClauses',
+        'orWhereClauses',
         'requestParams',
         'isSelected',
         'id'
@@ -29,7 +29,7 @@ abstract class Model {
 
         $this->selectClause = "";
         $this->whereClauses = array();
-        $this->OrWhereClauses = array();
+        $this->orWhereClauses = array();
         $this->requestParams = array();
 
         $this->isSelected = false;
@@ -134,7 +134,7 @@ abstract class Model {
     }
 
     public function orWhere($attribute, $operator, $param) {
-        array_push($this->OrWhereClauses, array(
+        array_push($this->orWhereClauses, array(
             "attribute" => $attribute,
             "operator" => $operator
         ));
@@ -150,9 +150,9 @@ abstract class Model {
         $sql = 'SELECT '.$this->selectClause.' from '.static::getTableName();
 
         // add WHERE clauses to the request if needed
-        if (!empty($this->whereClauses) || !empty($this->OrWhereClauses)) {
+        if (!empty($this->whereClauses) || !empty($this->orWhereClauses)) {
             $coditions = $this->concatenateWhereClauses($this->whereClauses, 'AND');
-            $coditions .= $this->concatenateWhereClauses($this->OrWhereClauses, 'OR');
+            $coditions .= $this->concatenateWhereClauses($this->orWhereClauses, 'OR');
 
             // replace the first 3 characteres by WHERE
             $sql .= substr_replace($coditions, ' WHERE ', 0, 3);
