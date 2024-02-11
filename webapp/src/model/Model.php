@@ -170,7 +170,11 @@ abstract class Model {
         $statement->execute();
         $res = $statement->get_result();
         $statement->close();
-        return $res->fetch_assoc();
+        if (is_object($res)) {
+            return $res->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return $res->fetch_assoc();
+        }
     }
 
     public function setPropertiesFromData($data) {

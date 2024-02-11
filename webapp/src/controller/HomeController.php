@@ -15,10 +15,7 @@ final class HomeController {
      http_response_code(200);
 }
 function view($id){
-    if($id == 0 )
-       $this->getgreeting();
-    else 
-       $this->getgreeting();
+   $this->getgreeting();
 }
 }
 

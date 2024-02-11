@@ -98,6 +98,29 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        .feature {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 
     
