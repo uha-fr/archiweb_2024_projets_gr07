@@ -1,5 +1,6 @@
 <?php
-class ShowContent {
+use webapp\view\Recipy\Content;
+class ShowContent extends Content {
     private $Recepies;
     
     function __construct($Recepies) {
@@ -8,8 +9,8 @@ class ShowContent {
     
     function __toString() {
         $contenu = "<ul class=\"list-group\">";
-        foreach ($this->Recepies as $Recepie) {
-            $contenu .= "<li class=\"list-group-item\">$Recepie</li>";
+        foreach ($this->Recepies as $recipe) {
+           $contenu .= $this->contenu($recipe);
         }
         $contenu .= "</ul>";
         return $contenu;

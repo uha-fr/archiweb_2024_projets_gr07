@@ -22,8 +22,8 @@ class IngredientModel extends Model {
         return "ingredient";
     }
  
-    function getingredient(){
-        return ["Ingredient1","Ingredient2"];
+    function getIngredientById($id){
+        return self::getById($id);
     }
 
     public function setLabel($label) {

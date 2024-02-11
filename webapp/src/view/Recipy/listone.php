@@ -1,13 +1,14 @@
 <?php
-class ShowContent {
-    private $product;
+use webapp\view\Recipy\Content;
+class ShowContent extends Content {
+    private $Recipe;
     
-    function __construct($product) {
-        $this->product = $product;
+    function __construct($Recipe) {
+        $this->Recipe = $Recipe;
     }
     
     function __toString() {
-        return "<div>le nom de recette est: {$this->product}</div>";
+        $this->contenu($Recipe);
     }
 }
 ?>
