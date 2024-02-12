@@ -24,7 +24,7 @@ To use a database with the web application, follow these steps:
 
 1. Create an empty database in MySQL.
 
-2. Import or execute the file *webapp/db/NutritionDB.sql* into your newly created database.
+2. Import or execute the file *webapp/db/NutritionDB.sql* then *FillDb.sql* into your newly created database.
 
 3. Complete the *webapp/db/database.conf* file with your database connection details.
 
