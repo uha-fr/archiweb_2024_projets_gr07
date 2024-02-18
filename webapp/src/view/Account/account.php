@@ -1,5 +1,5 @@
 <?php
-class ShowContent {
+class ShowContentAccount {
     private $user;
     
     function __construct($user) {

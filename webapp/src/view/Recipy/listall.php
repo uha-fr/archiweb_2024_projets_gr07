@@ -1,6 +1,6 @@
 <?php
 use webapp\view\Recipy\Content;
-class ShowContent extends Content {
+class ShowContentRecipy extends Content {
     private $Recepies;
     
     function __construct($Recepies) {

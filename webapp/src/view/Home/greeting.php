@@ -1,5 +1,5 @@
 <?php
-class ShowContent {
+class ShowContentHome {
     
    
     

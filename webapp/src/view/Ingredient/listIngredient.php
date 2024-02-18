@@ -1,5 +1,5 @@
 <?php
-class ShowContent  {
+class ShowContentIngredient  {
     private $ingredient;
     
     function __construct($ingredient) {

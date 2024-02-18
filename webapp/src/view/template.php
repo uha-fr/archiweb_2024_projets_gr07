@@ -142,7 +142,8 @@ require VIEWDIR.DS.'navbar.php';
 if(!is_null( $ressource) && !is_null( $file))
 require VIEWDIR.DS.$ressource.DS.$file.'.php';
 if(!is_null( $content) ){
-$content = NEW ShowContent($content);
+$classname = "ShowContent".$ressource;  
+$content = NEW $classname($content);
 echo $content;
 }
 ?>
