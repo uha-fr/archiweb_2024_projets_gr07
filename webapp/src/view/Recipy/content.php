@@ -2,8 +2,8 @@
 namespace webapp\view\Recipy;
 class Content {
 
-    function contenu($Recipe) {
-        $contenu = "<a href=\"index.php?controller=IngredientRecipe&id={$Recipe['id']}\"style=\"text-decoration: none; color: inherit;\">";
+    static function contenu($Recipe) {
+        $contenu = "<a href=\"IngredientRecipe/{$Recipe['id']}\"style=\"text-decoration: none; color: inherit;\">";
         $contenu .= "<div class=\"feature\">";
         $contenu .= "<h2>{$Recipe['label']}</h2>";
         $contenu .= "<p>Temps de préparation : {$Recipe['preparation_time']} minutes</p>"; 

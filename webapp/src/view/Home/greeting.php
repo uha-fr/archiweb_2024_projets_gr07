@@ -1,10 +1,6 @@
 <?php
-class ShowContentHome {
-    
-   
-    
-    function __toString() {
-        return "<div class=\"container\">
+
+        echo "<div class=\"container\">
         <h1>Bienvenue sur Votre Site Manger</h1>
         
         <div class=\"feature\">
@@ -40,6 +36,5 @@ class ShowContentHome {
             </ol>
         </div>
     </div>";
-    }
-}
+
 ?>

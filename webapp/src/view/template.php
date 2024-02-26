@@ -139,13 +139,10 @@ require VIEWDIR.DS.'navbar.php';
 
 <main class="container">
 <?php
-if(!is_null( $ressource) && !is_null( $file))
+if(!is_null( $ressource) && !is_null( $file)&&!is_null( $content) )
 require VIEWDIR.DS.$ressource.DS.$file.'.php';
-if(!is_null( $content) ){
-$classname = "ShowContent".$ressource;  
-$content = NEW $classname($content);
-echo $content;
-}
+
+
 ?>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

@@ -1,19 +1,14 @@
 <?php
-use webapp\view\Recipy\Content;
-class ShowContentRecipy extends Content {
-    private $Recepies;
+namespace webapp\view\Recipy;
+
     
-    function __construct($Recepies) {
-        $this->Recepies = $Recepies;
-    }
+ 
     
-    function __toString() {
-        $contenu = "<ul class=\"list-group\">";
-        foreach ($this->Recepies as $recipe) {
-           $contenu .= $this->contenu($recipe);
+        $view = "<ul class=\"list-group\">";
+        foreach ($content as $recipe) {
+           $view .= Content::contenu($recipe);
         }
-        $contenu .= "</ul>";
-        return $contenu;
-    }
-}
+        $view .= "</ul>";
+        echo $view;
+
 ?>

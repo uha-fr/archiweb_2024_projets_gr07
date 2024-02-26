@@ -1,22 +1,13 @@
 <?php
-class ShowContentListIngredients {
-    private $ingredients;
-    
-    function __construct($ingredients) {
-        $this->ingredients = $ingredients;
-    }
-    
-    function __toString() {
-        $contenu = "<ul class=\"list-group\">";
- 
-        foreach ($this->ingredients as $ingredient) {
-           $contenu.= "<a href=\"index.php?controller=Ingredient&id={$ingredient['id']}\"style=\"text-decoration: none; color: inherit;\">";
-            $contenu .= "<p>{$ingredient['label']}</p>";
-            $contenu .= "</a>";
-        }
-        $contenu .= "</ul>";
-        return $contenu;
-    }
-}
 
+        $view = "<ul class=\"list-group\">";
+ 
+        foreach ($content as $ingredient) {
+           $view.= "<a href=\"Ingredient/{$ingredient['id']}\"style=\"text-decoration: none; color: inherit;\">";
+            $view .= "<p>{$ingredient['label']}</p>";
+            $view .= "</a>";
+        }
+        $view .= "</ul>";
+        echo $view;
+ 
 ?>
