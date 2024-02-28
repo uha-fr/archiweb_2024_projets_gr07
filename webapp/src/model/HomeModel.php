@@ -1,4 +1,5 @@
 <?php
+namespace webapp\model;
 class HomeModel{
 
 function getgreeting(){

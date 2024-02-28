@@ -1,4 +1,5 @@
 <?php
+namespace webapp\model;
 class AccountModel{
 
 function getuser(){
