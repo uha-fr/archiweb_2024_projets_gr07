@@ -18,8 +18,8 @@ final class IngredientRecipeController {
      http_response_code(200);
    }
 
-   function view($id){
-      $this->list($id); 
+   function view($url){
+      $this->list($url['id']); 
    }
 }
 ?>

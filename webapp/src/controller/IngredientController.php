@@ -13,8 +13,8 @@ final class IngredientController {
      http_response_code(200);
    }
  
-   function view($id){
-      $this->getIngredient($id); 
+   function view($url){
+      $this->getIngredient($url['id']); 
    }
 }
 ?>

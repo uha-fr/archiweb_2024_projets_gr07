@@ -14,15 +14,15 @@
           <a class="nav-link active" href="Recipy">Les recettes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="Account">Mon compte</a>
+          <a class="nav-link active" aria-current="page" href="Account/account">Mon compte</a>
         </li>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="Account/1">S'inscrire</a>
+          <a class="nav-link active" aria-current="page" href="Account/signup">S'inscrire</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="Account/2">Se connecter</a>
+          <a class="nav-link active" href="Account/login">Se connecter</a>
         </li>
       </ul>
   

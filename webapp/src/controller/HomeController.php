@@ -14,7 +14,7 @@ final class HomeController {
      echo $html;
      http_response_code(200);
 }
-function view($id){
+function view($url){
    $this->getgreeting();
 }
 }

@@ -22,11 +22,11 @@ final class RecipyController {
      echo $html;
      http_response_code(200);
    }
-   function view($id){
-     if($id == 0 )
+   function view($url){
+     if($url['id'] == 0 )
       $this->list(); 
      else 
-      $this->getone($id);
+      $this->getone($url['id']);
 
    }
 }

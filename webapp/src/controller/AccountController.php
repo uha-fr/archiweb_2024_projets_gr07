@@ -1,45 +1,76 @@
 <?php
 use webapp\view\AccountView;
 use webapp\model\AccountModel;
+
 final class AccountController {
+    function getuser() {
+        $user_id = AccountModel::getUserIdFromSession();
+        if ($user_id) {
+            $user = AccountModel::getByID($user_id);
+            $v = new AccountView();
+            $html = $v->showUserInformation($user);
+            echo $html;
+            http_response_code(200);
+        } else {
+            header("Location: login");
+            exit;
+        }
+    }
 
+    function signup() {
+        $v = new AccountView();
+        $html = $v->signup();
+        echo $html;
+        http_response_code(200);
+    }
 
-    function getuser(){
-     $m=New AccountModel();
-     $user =$m->getuser();
+    function login() {
+        $v = new AccountView();
+        $html = $v->login();
+        echo $html;
+        http_response_code(200);
+    }
 
-     $v = New AccountView();
-     $html = $v->showUserInformation($user);
-     echo $html;
-     http_response_code(200);
+    function loginSubmit($post) {
+        $m = new AccountModel();
+        $user = $m->submitLogin($post);
+        $v = new AccountView();
+        $html = $v->showUserInformation($user);
+        echo $html;
+        http_response_code(200);
+    }
+
+    function signupSubmit($post) {
+        $m = new AccountModel();
+        $user = $m->submitSignup($post);
+        $v = new AccountView();
+        $html = $v->showUserInformation($user);
+        echo $html;
+        http_response_code(200);
+    }
+
+    function view($url) {
+        if (isset($url['action'])) {
+            switch ($url['action']) {
+                case 'account':
+                    $this->getuser();
+                    break;
+                case 'signup':
+                    $this->signup();
+                    break;
+                case 'login':
+                    $this->login();
+                    break;
+                case 'loginsubmit':
+                    $this->loginSubmit($url['post']);
+                    break;
+                case 'signupsubmit':
+                    $this->signupSubmit($url['post']);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
-function signup(){
-
-
-   $v = New AccountView();
-   $html = $v->signup();
-   echo $html;
-   http_response_code(200);
-
-}
-function login(){
- 
-   $v = New AccountView();
-   $html = $v->login();
-   echo $html;
-   http_response_code(200);
-}
-
-function view($id){
-    if($id == 0 )
-       $this->getuser();
-    else if ($id == 1) 
-       $this->signup();
-      else 
-      $this->login();
-
-}
-
-}
-
 ?>
