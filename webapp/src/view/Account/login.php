@@ -1,5 +1,7 @@
 <?php
-echo "<form action=\"Account/loginsubmit\" method=\"post\">
+echo "
+<base  href=\"/archiweb_2024_projets_gr07/webapp/\">
+<form action=\"Account/loginsubmit\" method=\"post\">
   <div class=\"mb-3\">
     <label for=\"InputEmail\" class=\"form-label\">Adresse e-mail</label>
     <input type=\"email\" class=\"form-control\" id=\"InputEmail\" name=\"email\" aria-describedby=\"emailHelp\">

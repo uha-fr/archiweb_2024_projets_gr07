@@ -4,7 +4,8 @@ use webapp\model\AccountModel;
 
 final class AccountController {
     function getuser() {
-        $user_id = AccountModel::getUserIdFromSession();
+        $accountModel = new AccountModel();
+        $user_id = $accountModel->getUserIdFromSession();
         if ($user_id) {
             $user = AccountModel::getByID($user_id);
             $v = new AccountView();
@@ -29,6 +30,11 @@ final class AccountController {
         $html = $v->login();
         echo $html;
         http_response_code(200);
+    }
+    function logout() {
+        AccountModel::logout();
+        header("location: login/guest");
+
     }
 
     function loginSubmit($post) {
@@ -60,6 +66,9 @@ final class AccountController {
                     break;
                 case 'login':
                     $this->login();
+                    break;
+                case 'logout':
+                    $this->logout();
                     break;
                 case 'loginsubmit':
                     $this->loginSubmit($url['post']);

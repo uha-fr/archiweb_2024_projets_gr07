@@ -98,6 +98,49 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+      .circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+    .green-circle {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .red-circle {
+      background-color: #dc3545;
+      color: #fff;
+      <style>
+    }
+    .recipe-container {
+        width: calc(33.33% - 20px); 
+        margin: 10px;
+        float: left;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+.recipe-container h2 {
+    margin-top: 0;
+}
+
+.recipe-image img {
+    max-width: 50%;
+    height: 50px;
+}
+
+.row {
+    display: inline-block;
+    flex-wrap: wrap;
+    margin-right: -500px;
+    margin-left: -500px;
+}
+
+
       body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -132,7 +175,10 @@
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <?php
-require VIEWDIR.DS.'navbar.php';
+if(!is_null( $userType))
+  require VIEWDIR.DS.'navbar.php';
+
+
 ?>
 </nav>
 

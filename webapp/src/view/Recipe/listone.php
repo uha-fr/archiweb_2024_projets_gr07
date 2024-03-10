@@ -1,5 +1,5 @@
 <?php
-namespace webapp\view\Recipy;
+namespace webapp\view\Recipe;
 
         echo Content::contenu($Recipe);
 

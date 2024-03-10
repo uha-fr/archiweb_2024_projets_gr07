@@ -6,16 +6,25 @@ final class HomeController {
 
 
     function getgreeting(){
-     $m=New HomeModel();
-     $greeting =$m->getgreeting();
-
+  
      $v = New HomeView();
-     $html = $v->showGreeting($greeting);
+     $html = $v->showGreeting();
      echo $html;
      http_response_code(200);
+    }
+
+     function getUsergreeting($user,$user_type){
+ 
+      $v = New HomeView();
+      $html = $v->showUserInfo($user_type,$user);
+      echo $html;
+      http_response_code(200);
 }
 function view($url){
-   $this->getgreeting();
+   if($url['userType'] == 'guest')
+      $this->getgreeting();
+   else 
+       $this->getUsergreeting($url['user'],$url['userType'] );
 }
 }
 

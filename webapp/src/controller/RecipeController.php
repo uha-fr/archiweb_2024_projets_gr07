@@ -1,23 +1,22 @@
 <?php
-use webapp\model\RecipyModel;
-final class RecipyController {
+use webapp\model\RecipeModel;
+use webapp\view\RecipeView;
+
+final class RecipeController {
 
    function list(){
-     $m=New RecipyModel();
+     $m=New RecipeModel();
      $products =$m->getAllRecipes();
-     require VIEWDIR.DS.'RecipyView.php' ;     
-     $v = New RecipyView();
+     $v = New RecipeView();
      $html = $v->listall($products);
      echo $html;
      http_response_code(200);
    }
    function getone($id){
-     require MODELDIR.DS.'RecipyModel.php' ;
-     $m=New RecipyModel();
+     $m=New RecipeModel();
      $product =$m->getRecipeById($id);
 
-     require VIEWDIR.DS.'RecipyView.php' ;     
-     $v = New RecipyView();
+     $v = New RecipeView();
      $html = $v->listone($product);
      echo $html;
      http_response_code(200);

@@ -56,13 +56,37 @@ class AccountModel extends Model{
       return  $this->password;
     } 
 
-    public static function startSession() {
-        session_start();
-    }
+   
     public static function storeUserInSession($user_id) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }        
         $_SESSION['user_id'] = $user_id;
+
     }
+    public static function getUserType() {
+        $user_id = AccountModel::getUserIdFromSession();
+        if ($user_id) {
+            $user_type_id = self::select('user_type_id')->where('id', '=', $user_id)->get()[0]['user_type_id'];
+            return UserTypeModel::getUserType($user_type_id);
+        } else {
+            return 'guest';
+        }
+    }
+    public static function getUser() {
+        $user_id = AccountModel::getUserIdFromSession();
+        if ($user_id) {
+            return self::select('*')->where('id', '=', $user_id)->get()[0];
+
+        } else {
+            return 'guest';
+        }
+    }
+
     public static function getUserIdFromSession() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         return isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     }
    function submitLogin($post){
@@ -83,14 +107,18 @@ class AccountModel extends Model{
         if (password_verify($password, $passBDD)) {
             $user = $this::getByID($data['id']);
             $user_id = $data['id'];
-            AccountModel::storeUserInSession($user_id);
-            return $user ;
+            $this->storeUserInSession($user_id);
+            return $user;
         } 
         else {
             echo "Mot de passe incorrect. Veuillez réessayer.";
             return null;
         }
-   }
+    }
+    static function  logout(){
+        unset($_SESSION['user_id']);
+        session_destroy();
+}
    function submitSignup($post){
 
        $firstname = $post['prenom'];
@@ -105,7 +133,7 @@ class AccountModel extends Model{
    
        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
        $country_id = CountryModel::getCountry($country);
-       $user_type_id = USerTypeModel::getUserType($user_type);
+       $user_type_id = USerTypeModel::getUserTypeID($user_type);
        $this->setFirstName($firstname);
        $this->setLastName($lastname);
        $this->setPassword($hashed_password);

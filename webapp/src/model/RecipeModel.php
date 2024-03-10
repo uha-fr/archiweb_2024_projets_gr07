@@ -2,7 +2,7 @@
 
 namespace webapp\model;
 
-class RecipyModel extends Model {
+class RecipeModel extends Model {
     protected $label;
     protected $description;
     public function __construct() {

@@ -1,6 +1,6 @@
 <?php
 
-use webapp\model\RecipyModel;
+use webapp\model\RecipeModel;
 use webapp\model\IngredientRecipeModel;
 use webapp\view\IngredientRecipeView;
 
@@ -8,7 +8,7 @@ use webapp\view\IngredientRecipeView;
 final class IngredientRecipeController {
 
    function list($id){
-     $m=New RecipyModel();
+     $m=New RecipeModel();
      $Recipe =$m->getRecipeById($id);
      $i = New IngredientRecipeModel();
      $ingredients = $i->getAllIngredients($Recipe);

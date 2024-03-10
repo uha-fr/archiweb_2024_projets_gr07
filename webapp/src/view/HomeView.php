@@ -4,9 +4,13 @@ require_once 'View.php';
 use webapp\view\AbstractView;
 class HomeView extends AbstractView {
 
-    function showGreeting($greeting){
-        return $this->loadViewContent('Home','greeting',$greeting);
+    function showGreeting(){
+        return $this->loadViewContent('Home','greeting','');
     }
+    function showUserInfo($userType,$user){
+        return $this->loadViewContent('Home','usage',$userType,$user);
+    }
+    
 
 }
 

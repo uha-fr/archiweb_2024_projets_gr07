@@ -3,8 +3,8 @@
 echo "<div class=\"col-md-7 col-lg-8\">
   <h4 class=\"mb-3\">S'inscrire</h4>
   <form action=\"Account/signupsubmit\" method=\"post\" class=\"needs-validation\" novalidate>
-    <div class=\"row g-3\">
-      <div class=\"col-sm-6\">
+    <div class=\"mb-3\">
+      <div class=\"mb-3\">
         <label for=\"nom\" class=\"form-label\">Nom</label>
         <input type=\"text\" class=\"form-control\" id=\"nom\" name=\"nom\" placeholder=\"\" value=\"\" required>
         <div class=\"invalid-feedback\">
@@ -12,7 +12,7 @@ echo "<div class=\"col-md-7 col-lg-8\">
         </div>
       </div>
 
-      <div class=\"col-sm-6\">
+      <div class=\"mb-3\">
         <label for=\"prenom\" class=\"form-label\">prénom</label>
         <input type=\"text\" class=\"form-control\" id=\"prenom\" name=\"prenom\" placeholder=\"\" value=\"\" required>
         <div class=\"invalid-feedback\">
