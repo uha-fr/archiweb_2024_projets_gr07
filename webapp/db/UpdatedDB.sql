@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `nutritiondb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `nutritiondb`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: nutritiondb
@@ -157,10 +155,9 @@ DROP TABLE IF EXISTS `meal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `meal` (
-  `recipe_id` int NOT NULL,
+  `recipe_id` int DEFAULT NULL,
   `user_id` int NOT NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`recipe_id`,`user_id`,`date`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `meal_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
@@ -172,7 +169,7 @@ CREATE TABLE `meal` (
 
 LOCK TABLES `meal` WRITE;
 /*!40000 ALTER TABLE `meal` DISABLE KEYS */;
-INSERT INTO `meal` VALUES (1,1,'2024-02-10 21:48:17'),(2,1,'2024-02-10 21:48:17'),(3,1,'2024-02-10 21:48:17'),(4,1,'2024-02-10 21:48:17'),(5,1,'2024-02-10 21:48:17'),(6,2,'2024-02-10 21:48:17'),(7,2,'2024-02-10 21:48:17'),(8,2,'2024-02-10 21:48:17'),(9,2,'2024-02-10 21:48:17'),(10,2,'2024-02-10 21:48:17'),(11,3,'2024-02-10 21:48:17'),(12,3,'2024-02-10 21:48:17');
+INSERT INTO `meal` VALUES (1,1,'2024-02-10 21:48:17'),(2,1,'2024-02-10 21:48:17'),(3,1,'2024-02-10 21:48:17'),(4,1,'2024-02-10 21:48:17'),(5,1,'2024-02-10 21:48:17'),(6,2,'2024-02-10 21:48:17'),(7,2,'2024-02-10 21:48:17'),(8,2,'2024-02-10 21:48:17'),(9,2,'2024-02-10 21:48:17'),(10,2,'2024-02-10 21:48:17'),(11,3,'2024-02-10 21:48:17'),(12,3,'2024-02-10 21:48:17'),(NULL,19,'2024-03-13 00:00:00'),(1,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(7,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(8,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(1,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(1,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00');
 /*!40000 ALTER TABLE `meal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,7 +197,7 @@ CREATE TABLE `recipe` (
   CONSTRAINT `recipe_ibfk_1` FOREIGN KEY (`country_origin_id`) REFERENCES `country` (`id`),
   CONSTRAINT `recipe_ibfk_2` FOREIGN KEY (`difficulty_level_id`) REFERENCES `difficultylevel` (`id`),
   CONSTRAINT `recipe_ibfk_3` FOREIGN KEY (`creator_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +261,7 @@ CREATE TABLE `user` (
   KEY `country_id` (`country_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_type_id`) REFERENCES `usertype` (`id`),
   CONSTRAINT `user_ibfk_2` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,7 +270,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user1@example.com','user1','password1',1,'',NULL,NULL,NULL,NULL),(2,'admin@example.com','admin','password2',2,'',NULL,NULL,NULL,NULL),(3,'nutritionist@example.com','nutritionist','password3',3,'',NULL,NULL,NULL,NULL),(19,'ahmedhazem@gmail.com','Ahmed10Hazem','$2y$10$3RHTMoXLs08QkoPCRtvg3OsKjCaHYqC98JKOvpTWHj/1nFIxwrOae',1,'Ahmed Hazem','Youssef','13 Rue des Frères Lumière, 68350 Brunstatt-Didenheim, France',3,NULL);
+INSERT INTO `user` VALUES (1,'user1@example.com','user1','password1',1,'',NULL,NULL,NULL,NULL),(2,'admin@example.com','admin','password2',2,'',NULL,NULL,NULL,NULL),(3,'nutritionist@example.com','nutritionist','password3',3,'',NULL,NULL,NULL,NULL),(19,'ahmedhazem@gmail.com','Ahmed10Hazem','$2y$10$3RHTMoXLs08QkoPCRtvg3OsKjCaHYqC98JKOvpTWHj/1nFIxwrOae',1,'Ahmed Hazem','Youssef','13 Rue des Frères Lumière, 68350 Brunstatt-Didenheim, France',3,5000);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,4 +307,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-10 22:42:50
+-- Dump completed on 2024-03-13 23:45:44

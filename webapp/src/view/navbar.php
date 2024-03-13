@@ -15,7 +15,7 @@
           <a class="nav-link active" aria-current="page" href="Home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="Recipe">Les recettes</a>
+          <a class="nav-link active" href="Recipe/listall">Les recettes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="Account/account">Mon compte</a>

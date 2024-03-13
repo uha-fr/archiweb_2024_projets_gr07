@@ -12,9 +12,10 @@ class Router {
       $action = isset($_GET['action']) ? $_GET['action']:'account';
       $post = null;
       if(isset($_GET['action']))
-      { if($_GET['action'] == 'loginsubmit' || $_GET['action'] == 'signupsubmit' )
+      { if($_GET['action'] == 'loginsubmit' || $_GET['action'] == 'signupsubmit' || $_GET['action'] == 'setobjectivesubmit'||$_GET['action'] =='add')
          $post = $_POST;
       }
+  
       $m = new AccountModel();
       $userType = $m->getUserType();
       $user = $m->getUser();

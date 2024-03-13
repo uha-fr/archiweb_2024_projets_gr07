@@ -7,6 +7,7 @@ class AccountModel extends Model{
     protected $email;
     protected $password;
     protected $username;
+    protected $caloriesobjective;
     protected $address;
     protected $country_id;
     protected $user_type_id;
@@ -21,6 +22,7 @@ class AccountModel extends Model{
         $this->password = '';
         $this->username = '';
         $this->address = '';
+        $this->caloriesobjective = -1;
         $this->country_id = -1;
         $this->user_type_id = -1;
 
@@ -46,6 +48,19 @@ class AccountModel extends Model{
     public function setUserName($username) {
         $this->username = $username;
     }
+    public function setObjective($objective) {
+        $user_id = self::getUserIdFromSession();
+        if($user_id){
+        $sql = 'UPDATE user
+        SET caloriesobjective = ?
+        WHERE id = ?';
+            $params = [$objective, $user_id];
+            Model::selectRaw($sql, $params)[0];
+        }
+        else{
+            return null;
+        }
+    }
     public function setCountryID($country_id) {
         $this->country_id = $country_id;
     }
@@ -65,7 +80,7 @@ class AccountModel extends Model{
 
     }
     public static function getUserType() {
-        $user_id = AccountModel::getUserIdFromSession();
+        $user_id = self::getUserIdFromSession();
         if ($user_id) {
             $user_type_id = self::select('user_type_id')->where('id', '=', $user_id)->get()[0]['user_type_id'];
             return UserTypeModel::getUserType($user_type_id);
@@ -74,7 +89,7 @@ class AccountModel extends Model{
         }
     }
     public static function getUser() {
-        $user_id = AccountModel::getUserIdFromSession();
+        $user_id = self::getUserIdFromSession();
         if ($user_id) {
             return self::select('*')->where('id', '=', $user_id)->get()[0];
 
@@ -89,6 +104,7 @@ class AccountModel extends Model{
         }
         return isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     }
+  
    function submitLogin($post){
         $email = $post['email']; 
         $password = $post['password'];
@@ -143,7 +159,6 @@ class AccountModel extends Model{
        $this->setCountryId($country_id);
        $this->setUserTypeId($user_type_id);
        $this->save();
-   
    }
 
 }

@@ -22,7 +22,7 @@ final class RecipeController {
      http_response_code(200);
    }
    function view($url){
-     if($url['id'] == 0 )
+     if($url['action'] == "listall" )
       $this->list(); 
      else 
       $this->getone($url['id']);

@@ -14,23 +14,19 @@ final class MealController {
             $html = $v->showRecipies($products);
             echo $html;
     }
-    function addRecipe($id) {
-        $m = new AccountModel();
-        $user_id = $m->getUserIdFromSession();
-        if ($user_id) {
-           $user = $m->getByID($user_id);
-        } else {
-            header("Location: login");
-            exit;
-        }
+    function addRecipe($post) {
+
+        $meal = new MealModel();
+        $meal->addMeal($post);	
+        header("Location: ../Home");
     }
 
 
     function view($url) {
-    if($url['id']==0)     
+    if($url['action']=="choose")     
         $this->chooseRecipe();
     else 
-        $this->addRecipe($url['id']);
+        $this->addRecipe($url['post']);
         
     }
 }

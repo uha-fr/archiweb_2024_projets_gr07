@@ -10,10 +10,10 @@ class AccountView extends AbstractView{
         return $this->loadViewContent('Account','account',$user);
     }
     function signup(){
-        return $this->loadViewContent('Account','signup','');
+        return $this->loadViewContent('Account','signup');
     }
     function login(){
-        return $this->loadViewContent('Account','login','');
+        return $this->loadViewContent('Account','login');
     }
 
 }

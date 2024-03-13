@@ -141,6 +141,30 @@ abstract class Model {
         array_push($this->requestParams, $param);
         return $this;
     }
+    public  function selectRaw($sql, $params = [])
+    {
+        $con = Database::getInstance()->getConnection();
+
+        $statement = $con->prepare($sql);
+
+        if ($statement === false) {
+            return false;
+        }
+
+        if (!empty($params)) {
+            $paramTypes = $this->getBindParamTypes($params);
+            $statement->bind_param($paramTypes, ...$params);
+        }
+
+        $statement->execute();
+        $result = $statement->get_result();
+        $statement->close();
+        if ($result === false) {
+            return false;
+        }
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 
     public function get() {        
         if (!$this->isSelected)
@@ -176,7 +200,11 @@ abstract class Model {
             return $res->fetch_assoc();
         }
     }
+    
 
+    public static function getUserIdFromSession() {
+        return isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+    }
     public function setPropertiesFromData($data) {
         if ($data === null)
             return;
