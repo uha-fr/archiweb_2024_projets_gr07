@@ -50,7 +50,7 @@ CREATE TABLE `country` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `country` (
 
 LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
-INSERT INTO `country` VALUES (1,'Égypte'),(2,'Rwanda'),(3,'France');
+INSERT INTO `country` VALUES (1,'Égypte'),(2,'Rwanda'),(3,'France'),(4,'Afghanistan'),(5,'Albanie'),(6,'Algérie'),(7,'Andorre'),(8,'Angola'),(9,'Antigua-et-Barbuda'),(10,'Argentine'),(11,'Arménie'),(12,'Australie'),(13,'Autriche'),(14,'Azerbaïdjan'),(15,'Bahamas'),(16,'Bahreïn'),(17,'Bangladesh'),(18,'Barbade'),(19,'Biélorussie'),(20,'Belgique'),(21,'Belize'),(22,'Bénin'),(23,'Bhoutan'),(24,'Bolivie'),(25,'Bosnie-Herzégovine'),(26,'Botswana'),(27,'Brésil'),(28,'Brunei'),(29,'Bulgarie'),(30,'Burkina Faso'),(31,'Burundi'),(32,'Cabo Verde'),(33,'Cambodge'),(34,'Cameroun'),(35,'Canada'),(36,'République centrafricaine'),(37,'Tchad'),(38,'Chili'),(39,'Chine'),(40,'Colombie'),(41,'Comores'),(42,'Congo'),(43,'Costa Rica'),(44,'Croatie'),(45,'Cuba'),(46,'Chypre'),(47,'République tchèque'),(48,'Côte d’Ivoire'),(49,'Danemark'),(50,'Djibouti'),(51,'Dominique'),(52,'République dominicaine'),(53,'Équateur'),(54,'Égypte'),(55,'Salvador'),(56,'Guinée équatoriale'),(57,'Érythrée'),(58,'Estonie'),(59,'Éthiopie'),(60,'Fidji'),(61,'Finlande'),(62,'France'),(63,'Gabon'),(64,'Gambie'),(65,'Géorgie'),(66,'Allemagne'),(67,'Ghana'),(68,'Grèce'),(69,'Grenade'),(70,'Guatemala'),(71,'Guinée'),(72,'Guinée-Bissau'),(73,'Guyana'),(74,'Haïti'),(75,'Honduras'),(76,'Hongrie'),(77,'Islande'),(78,'Inde'),(79,'Indonésie'),(80,'Iran'),(81,'Irak'),(82,'Irlande'),(83,'Italie'),(84,'Jamaïque'),(85,'Japon'),(86,'Jordanie'),(87,'Kazakhstan'),(88,'Kenya'),(89,'Kiribati'),(90,'Kosovo'),(91,'Koweït'),(92,'Kirghizistan'),(93,'Laos'),(94,'Lettonie'),(95,'Liban'),(96,'Lesotho'),(97,'Liberia'),(98,'Libye'),(99,'Liechtenstein'),(100,'Lituanie'),(101,'Luxembourg'),(102,'Macédoine du Nord'),(103,'Madagascar'),(104,'Malawi'),(105,'Malaisie'),(106,'Maldives'),(107,'Mali'),(108,'Malte'),(109,'Îles Marshall'),(110,'Mauritanie'),(111,'Maurice'),(112,'Mexique'),(113,'Micronésie'),(114,'Moldavie'),(115,'Monaco'),(116,'Mongolie'),(117,'Monténégro'),(118,'Maroc'),(119,'Mozambique'),(120,'Myanmar'),(121,'Namibie'),(122,'Nauru'),(123,'Népal'),(124,'Pays-Bas'),(125,'Nouvelle-Zélande'),(126,'Nicaragua'),(127,'Niger'),(128,'Nigeria'),(129,'Corée du Nord'),(130,'Norvège'),(131,'Oman'),(132,'Pakistan'),(133,'Palaos'),(134,'Palestine'),(135,'Panama'),(136,'Papouasie-Nouvelle-Guinée'),(137,'Paraguay'),(138,'Pérou'),(139,'Philippines'),(140,'Pologne'),(141,'Portugal'),(142,'Qatar'),(143,'Roumanie'),(144,'Russie'),(145,'Rwanda'),(146,'Saint-Christophe-et-Niévès'),(147,'Sainte-Lucie'),(148,'Saint-Vincent-et-les-Grenadines'),(149,'Samoa'),(150,'Saint-Marin'),(151,'Sao Tomé-et-Principe'),(152,'Arabie saoudite'),(153,'Sénégal'),(154,'Serbie'),(155,'Seychelles'),(156,'Sierra Leone'),(157,'Singapour'),(158,'Slovaquie'),(159,'Slovénie'),(160,'Îles Salomon'),(161,'Somalie'),(162,'Afrique du Sud'),(163,'Corée du Sud'),(164,'Sud-Soudan'),(165,'Espagne'),(166,'Sri Lanka'),(167,'Soudan'),(168,'Suriname'),(169,'Swaziland'),(170,'Suède'),(171,'Suisse'),(172,'Syrie'),(173,'Taiwan'),(174,'Tajikistan'),(175,'Tanzanie'),(176,'Thaïlande'),(177,'Togo'),(178,'Tonga'),(179,'Trinité-et-Tobago'),(180,'Tunisie'),(181,'Turquie'),(182,'Turkménistan'),(183,'Tuvalu'),(184,'Ouganda'),(185,'Ukraine'),(186,'Émirats arabes unis'),(187,'Royaume-Uni'),(188,'États-Unis'),(189,'Uruguay'),(190,'Ouzbékistan'),(191,'Vanuatu'),(192,'Cité du Vatican'),(193,'Venezuela'),(194,'Vietnam'),(195,'Yémen'),(196,'Zambie'),(197,'Zimbabwe');
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-17  1:11:51
+-- Dump completed on 2024-03-17 20:43:41

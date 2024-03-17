@@ -1,6 +1,9 @@
 <?php
+use webapp\model\CountryModel;
 use webapp\view\AccountView;
 use webapp\model\AccountModel;
+
+
 
 final class AccountController {
     function getuser() {
@@ -8,8 +11,12 @@ final class AccountController {
         $user_id = $accountModel->getUserIdFromSession();
         if ($user_id) {
             $user = AccountModel::getByID($user_id);
+            $country = CountryModel::getCountryName($user['country_id']);
+            $content = Array();
+            $content['country'] = $country;
+            $content['user'] = $user;
             $v = new AccountView();
-            $html = $v->showUserInformation($user);
+            $html = $v->showUserInformation($content);
             echo $html;
             http_response_code(200);
         } else {
@@ -19,8 +26,10 @@ final class AccountController {
     }
 
     function signup() {
+        $m = new CountryModel();
+        $countries = $m->getCountriesNames();
         $v = new AccountView();
-        $html = $v->signup();
+        $html = $v->signup($countries);
         echo $html;
         http_response_code(200);
     }
@@ -40,10 +49,8 @@ final class AccountController {
     function loginSubmit($post) {
         $m = new AccountModel();
         $user = $m->submitLogin($post);
-        $v = new AccountView();
-        $html = $v->showUserInformation($user);
-        echo $html;
-        http_response_code(200);
+        header("location: account");
+
     }
 
     function signupSubmit($post) {

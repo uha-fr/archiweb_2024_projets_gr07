@@ -1,6 +1,6 @@
 <?php
 
-echo "<div class=\"col-md-7 col-lg-8\">
+$vue = "<div class=\"col-md-7 col-lg-8\">
   <h4 class=\"mb-3\">S'inscrire</h4>
   <form action=\"Account/signupsubmit\" method=\"post\" class=\"needs-validation\" novalidate>
     <div class=\"mb-3\">
@@ -59,9 +59,11 @@ echo "<div class=\"col-md-7 col-lg-8\">
       <div class=\"col-md-5\">
         <label for=\"country\" class=\"form-label\">Pays</label>
         <select class=\"form-select\" id=\"country\" name=\"country\" required>
-          <option value=\"\">Choose...</option>
-          <option>France</option>
-          <option>Autres</option>
+          <option value=\"\">Choose...</option>";
+          foreach($content as $c){
+          $vue.="<option>{$c['name']}</option>";
+          }
+          $vue.="
 
         </select>
         <div class=\"invalid-feedback\">
@@ -92,5 +94,6 @@ echo "<div class=\"col-md-7 col-lg-8\">
   </form>
 </div>
 </div>";
+echo $vue;
 
 ?>

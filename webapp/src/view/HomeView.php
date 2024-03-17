@@ -7,8 +7,8 @@ class HomeView extends AbstractView {
     function showGreeting(){
         return $this->loadViewContent('Home','greeting');
     }
-    function showUserInfo($userType,$user, $calories,$numberOfMeals){
-        return $this->loadViewContent('Home','usage',$userType,$user, $calories,$numberOfMeals);
+    function showUserInfo($content){
+        return $this->loadViewContent('Home','usage',$content);
     }
     function showSetObjective(){
         return $this->loadViewContent('Home','setObjective');

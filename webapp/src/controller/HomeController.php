@@ -20,9 +20,14 @@ final class HomeController {
       $c1 ="getNumberOf{$condition}Meals";
       $calories = $m->$c();
       $numberOfMeals = $m->$c1();
+      $content = Array();
+      $content["calories"] = $calories;
+      $content["numberOfMeals"] = $numberOfMeals;
+      $content["user"] = $user;
+      $content["user_type"] = $user_type;
       if($calories){
       $v = New HomeView();
-      $html = $v->showUserInfo($user_type,$user,$calories, $numberOfMeals);
+      $html = $v->showUserInfo($content);
       echo $html;
       http_response_code(200);
       }else{

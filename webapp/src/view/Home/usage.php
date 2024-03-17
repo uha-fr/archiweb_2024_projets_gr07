@@ -1,4 +1,9 @@
 <?php
+$calories = $content['calories'];
+$user = $content['user'];
+$userType = $content['user_type'];
+$numberOfMeals = $content['numberOfMeals'];
+
 if (!is_null($calories)) {
     $objective = $user['caloriesobjective'];
     $percentage = ($calories / $objective) * 100;
