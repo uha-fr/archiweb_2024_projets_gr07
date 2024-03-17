@@ -5,8 +5,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule ^([^/]+)/([^/]+)/([0-9]+)/?$ index.php?Controller=$1&action=$2&id=$3 [QSA,L]
-RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ index.php?Controller=$1&action=$2&user=$3 [QSA,L]
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ index.php?Controller=$1&action=$2&condition=$3 [QSA,L]
 RewriteRule ^([^/]+)/([0-9]+)/?$ index.php?Controller=$1&id=$2 [QSA,L]
-RewriteRule ^([^/]+)/([a-z]+)/?$ index.php?Controller=$1&action=$2 [QSA,L]
-RewriteRule ^([^/]+)/([^/]+)/?$ index.php?Controller=$1&user=$2 [QSA,L]
+RewriteRule ^([^/]+)/([A-Z][^/]+)/?$ index.php?Controller=$1&condition=$2 [QSA,L]
+RewriteRule ^([^/]+)/([^/]+)/?$ index.php?Controller=$1&action=$2 [QSA,L]
 RewriteRule ^([^/]+)/?$ index.php?Controller=$1 [QSA,L]

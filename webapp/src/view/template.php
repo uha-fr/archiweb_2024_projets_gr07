@@ -22,8 +22,62 @@
 
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
+      .custom-btn {
+       margin-right: 10px; 
+       font-size: 20px; 
+       color: black; 
+       border: 2px solid black; 
+        }
+        .custom-btn-group {
+    margin-bottom: 1.5rem; 
+    display: flex; 
+    gap: 10px; 
+   }
+       .custom-btn:hover {
+           border-color: lightgray; 
+       }
+       .custom-circles {
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+
+       }
+       .d-flex {
+    display: flex;
+}
+   
+   .align-items-center {
+       align-items: center;
+   }
+   
+   .mr-3 {
+       margin-right: 35px; 
+       margin-bottom: 1rem;
+   
+   }
+   .red-circle {
+       background-color: #ff0000;
+   }
+   
+   .orange-circle {
+       background-color: #ffa500;
+   }
+   
+   .yellow-circle {
+       background-color: #ffff00;
+   }
+   
+   .green-circle {
+       background-color: #00ff00;
+   }
+   
+   .gray-circle {
+       background-color: #808080;
+   }
+   
+   
+   .bd-placeholder-img {
+           font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
         -moz-user-select: none;

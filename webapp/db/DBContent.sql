@@ -103,7 +103,7 @@ CREATE TABLE `ingredient` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `ingredient_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `ingredient` (
 
 LOCK TABLES `ingredient` WRITE;
 /*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
-INSERT INTO `ingredient` VALUES (1,'Pomme de terre',77,'https://img-3.journaldesfemmes.fr/ZfmzxO5Kyg0e3j1URh4V8Mf3slc=/1500x/smart/097777a79f144a048f7008573f8584d5/ccmcms-jdf/27424516.jpg',1),(2,'Poulet',239,'https://img-3.journaldesfemmes.fr/vFEM-3POiKT8i8NmZvqwIZiG9kg=/1500x/smart/1a712856aaaf419dbfa5d24cc9808e03/ccmcms-jdf/35925017.jpg',2),(3,'Chocolat',546,'https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',3),(4,'Tomate',18,'https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',1),(5,'Riz',130,'https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',2),(6,'Épices égyptiennes',0,'https://www.cairotoptours.com/storage/2527/conversions/8eccd10fcf984d33fd8ee491003a6064-webp.webp',1),(7,'Brochette de viande rwandaise',300,'rwandan_kebab.jpg',2),(8,'Baguette française',250,'https://tinyurl.com/3k563t73',1);
+INSERT INTO `ingredient` VALUES (1,'Pomme de terre',77,'https://img-3.journaldesfemmes.fr/ZfmzxO5Kyg0e3j1URh4V8Mf3slc=/1500x/smart/097777a79f144a048f7008573f8584d5/ccmcms-jdf/27424516.jpg',1),(2,'Poulet',239,'https://img-3.journaldesfemmes.fr/vFEM-3POiKT8i8NmZvqwIZiG9kg=/1500x/smart/1a712856aaaf419dbfa5d24cc9808e03/ccmcms-jdf/35925017.jpg',2),(3,'Chocolat',546,'https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',3),(4,'Tomate',18,'https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',1),(5,'Riz',130,'https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',2),(6,'Épices égyptiennes',0,'https://www.cairotoptours.com/storage/2527/conversions/8eccd10fcf984d33fd8ee491003a6064-webp.webp',1),(7,'Brochette de viande rwandaise',300,'rwandan_kebab.jpg',2),(8,'Baguette française',250,'https://tinyurl.com/3k563t73',1),(9,'Oignon',30,'https://www.academiedugout.fr/images/15749/370-274/ffffff/fotolia_61211686_subscription_xl-copy.jpg?poix=50&poiy=50',1),(10,'Carotte',25,'https://img-3.journaldesfemmes.fr/KcrwoKVyt9WyplVHiDLvXVjKN7k=/1500x/smart/4e81297bc0b94259b9c83b576873e28a/ccmcms-jdf/25936494.jpg',1),(11,'Sel',0,'https://www.medisite.fr/files/styles/pano_xxl/public/images/article/8/7/0/5525078/vignette-focus.jpg?itok=6rrfaxqy',3);
 /*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +143,7 @@ CREATE TABLE `ingredientrecipe` (
 
 LOCK TABLES `ingredientrecipe` WRITE;
 /*!40000 ALTER TABLE `ingredientrecipe` DISABLE KEYS */;
-INSERT INTO `ingredientrecipe` VALUES (1,1,300,0),(1,5,200,0),(1,6,100,0),(3,1,200,0),(3,4,300,0),(3,6,100,0),(4,3,500,0),(4,7,200,1),(5,2,600,0),(5,8,200,0),(6,5,400,0),(6,8,300,0),(7,5,400,0),(7,8,300,0),(8,8,800,0),(9,2,600,0),(9,4,200,0),(10,2,600,0),(10,4,200,0),(11,4,200,0),(11,8,200,0),(12,3,400,0),(12,8,200,0);
+INSERT INTO `ingredientrecipe` VALUES (1,5,200,0),(1,6,100,0),(1,9,300,0),(3,4,300,0),(3,6,100,0),(3,9,200,0),(4,3,500,0),(4,7,200,1),(5,2,600,0),(5,8,200,0),(6,5,400,0),(6,8,300,0),(7,5,400,0),(7,8,300,0),(8,8,800,0),(9,2,600,0),(9,4,200,0),(10,2,600,0),(10,4,200,0),(11,4,200,0),(11,8,200,0),(12,3,400,0),(12,8,200,0);
 /*!40000 ALTER TABLE `ingredientrecipe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,9 +155,12 @@ DROP TABLE IF EXISTS `meal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `meal` (
-  `recipe_id` int DEFAULT NULL,
+  `recipe_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `date` datetime NOT NULL,
+  `year` int NOT NULL,
+  `month` int NOT NULL,
+  `week` int NOT NULL,
+  `day` int NOT NULL,
   KEY `user_id` (`user_id`),
   CONSTRAINT `meal_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
@@ -169,7 +172,7 @@ CREATE TABLE `meal` (
 
 LOCK TABLES `meal` WRITE;
 /*!40000 ALTER TABLE `meal` DISABLE KEYS */;
-INSERT INTO `meal` VALUES (1,1,'2024-02-10 21:48:17'),(2,1,'2024-02-10 21:48:17'),(3,1,'2024-02-10 21:48:17'),(4,1,'2024-02-10 21:48:17'),(5,1,'2024-02-10 21:48:17'),(6,2,'2024-02-10 21:48:17'),(7,2,'2024-02-10 21:48:17'),(8,2,'2024-02-10 21:48:17'),(9,2,'2024-02-10 21:48:17'),(10,2,'2024-02-10 21:48:17'),(11,3,'2024-02-10 21:48:17'),(12,3,'2024-02-10 21:48:17'),(NULL,19,'2024-03-13 00:00:00'),(1,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(7,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(8,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(1,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(1,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(4,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00'),(NULL,19,'2024-03-13 00:00:00');
+INSERT INTO `meal` VALUES (1,19,2024,3,6,16),(1,19,2024,3,6,16),(6,19,2024,3,6,16),(1,19,2024,3,6,16),(4,19,2024,3,6,16),(7,19,2024,3,6,16),(8,19,2024,3,6,16),(3,19,2024,3,0,17);
 /*!40000 ALTER TABLE `meal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +273,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user1@example.com','user1','password1',1,'',NULL,NULL,NULL,NULL),(2,'admin@example.com','admin','password2',2,'',NULL,NULL,NULL,NULL),(3,'nutritionist@example.com','nutritionist','password3',3,'',NULL,NULL,NULL,NULL),(19,'ahmedhazem@gmail.com','Ahmed10Hazem','$2y$10$3RHTMoXLs08QkoPCRtvg3OsKjCaHYqC98JKOvpTWHj/1nFIxwrOae',1,'Ahmed Hazem','Youssef','13 Rue des Frères Lumière, 68350 Brunstatt-Didenheim, France',3,5000);
+INSERT INTO `user` VALUES (1,'user1@example.com','user1','password1',1,'',NULL,NULL,NULL,NULL),(2,'admin@example.com','admin','password2',2,'',NULL,NULL,NULL,NULL),(3,'nutritionist@example.com','nutritionist','password3',3,'',NULL,NULL,NULL,NULL),(19,'ahmedhazem@gmail.com','Ahmed10Hazem','$2y$10$3RHTMoXLs08QkoPCRtvg3OsKjCaHYqC98JKOvpTWHj/1nFIxwrOae',1,'Ahmed Hazem','Youssef','13 Rue des Frères Lumière, 68350 Brunstatt-Didenheim, France',3,4000);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-13 23:45:44
+-- Dump completed on 2024-03-17  1:11:51

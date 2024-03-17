@@ -3,8 +3,6 @@ use webapp\view\HomeView;
 use webapp\model\MealModel;
 use webapp\model\AccountModel;
 
-
-
 final class HomeController {
 
 
@@ -16,17 +14,24 @@ final class HomeController {
      http_response_code(200);
     }
 
-     function getUsergreeting($user,$user_type){
+     function getUsergreeting($user,$user_type,$condition){
       $m = New MealModel();
-      $calories = $m->getTotalCalories();
-      $numberOfMeals = $m->getNumberOfMeals();
+      $c ="getTotal{$condition}Calories";
+      $c1 ="getNumberOf{$condition}Meals";
+      $calories = $m->$c();
+      $numberOfMeals = $m->$c1();
       if($calories){
       $v = New HomeView();
       $html = $v->showUserInfo($user_type,$user,$calories, $numberOfMeals);
       echo $html;
       http_response_code(200);
       }else{
-         header("Location: add");
+         $calories = 0;
+         $numberOfMeals = 0;
+         $v = New HomeView();
+         $html = $v->showUserInfo($user_type,$user,$calories, $numberOfMeals);
+         echo $html;
+         http_response_code(200);
       }
 }
 function setObjective(){
@@ -49,7 +54,7 @@ function view($url){
    if($url['userType'] == 'guest')
       $this->getgreeting();
    else 
-       $this->getUsergreeting($url['user'],$url['userType'] );
+       $this->getUsergreeting($url['user'],$url['userType'] ,$url['condition']);
 }
 }
 }
