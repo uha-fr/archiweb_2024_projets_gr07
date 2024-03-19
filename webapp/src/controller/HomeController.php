@@ -34,7 +34,7 @@ final class HomeController {
          $calories = 0;
          $numberOfMeals = 0;
          $v = New HomeView();
-         $html = $v->showUserInfo($user_type,$user,$calories, $numberOfMeals);
+         $html = $v->showUserInfo($content);
          echo $html;
          http_response_code(200);
       }

@@ -7,14 +7,20 @@ $numberOfMeals = $content['numberOfMeals'];
 if (!is_null($calories)) {
     $objective = $user['caloriesobjective'];
     $percentage = ($calories / $objective) * 100;
-    $circleClass = 'green-circle';
-    if ($percentage > 90) {
-        $circleClass = 'red-circle';
-    } elseif ($percentage >= 80) {
-        $circleClass = 'orange-circle';
-    } elseif ($percentage >= 60) {
-        $circleClass = 'yellow-circle';
-    }
+ 
+}
+else{
+    $objective = $user['caloriesobjective'];
+    $percentage = 0;
+}
+
+$circleClass = 'green-circle';
+if ($percentage > 90) {
+    $circleClass = 'red-circle';
+} elseif ($percentage >= 80) {
+    $circleClass = 'orange-circle';
+} elseif ($percentage >= 60) {
+    $circleClass = 'yellow-circle';
 }
 echo "
 <h2> Bienvenue {$user['firstname']}</h2>
